@@ -1,0 +1,23 @@
+<resources>
+    <!-- Фон = системные обои телефона -->
+    <style name="Theme.Home" parent="android:Theme.Material.NoActionBar">
+        <item name="android:windowShowWallpaper">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:enforceNavigationBarContrast">false</item>
+        <item name="android:enforceStatusBarContrast">false</item>
+    </style>
+    <!-- Окно настроек: обычный светлый фон, без обоев -->
+    <style name="Theme.Settings" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/settings_bg</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
+    </style>
+    <color name="settings_bg">#FFF2F2F7</color>
+    <color name="ic_bg">#FF4F7CFF</color>
+</resources>
