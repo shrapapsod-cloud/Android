@@ -23,7 +23,16 @@ jobs:
           path: ~/.android/debug.keystore
           key: debug-keystore-v1
       - name: Build release APK
-        run: gradle :app:assembleRelease --stacktrace -x lintVitalAnalyzeRelease -x lintVitalReportRelease -x lintVitalRelease
+        run: |
+          set -o pipefail
+          gradle :app:assembleRelease --stacktrace --console=plain -x lintVitalAnalyzeRelease -x lintVitalReportRelease -x lintVitalRelease 2>&1 | tee build.log
+      - name: Publish build log on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "log-${{ github.run_number }}" build.log \
+            --title "Build log ${{ github.run_number }}" --notes "Failed build log" --target "${{ github.sha }}"
       - name: Collect
         run: |
           mkdir -p out
